@@ -127,6 +127,11 @@ body {
   color: #fff;
 }
 
+/* Prevent horizontal overflow on all screen sizes */
+html, body {
+  overflow-x: hidden;
+}
+
 @media (max-width: 991px) {
   html, body {
     overflow-x: hidden;
@@ -213,6 +218,9 @@ header
   left: 0px;
   right: 0px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.15)!important;
+  display: block!important;
+  visibility: visible!important;
+  opacity: 1!important;
 }
 
 .background-header .logo,
@@ -230,16 +238,19 @@ header
 
 .header-area {
   background-color: #fff;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
-  z-index: 100;
+  z-index: 9999;
   height: 100px;
-  -webkit-transition: all .5s ease 0s;
-  -moz-transition: all .5s ease 0s;
-  -o-transition: all .5s ease 0s;
-  transition: all .5s ease 0s;
+  -webkit-transition: all .3s ease 0s;
+  -moz-transition: all .3s ease 0s;
+  -o-transition: all .3s ease 0s;
+  transition: all .3s ease 0s;
+  display: block!important;
+  visibility: visible!important;
+  opacity: 1!important;
 }
 
 .header-area .main-nav {
@@ -399,12 +410,12 @@ header
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   display: block;
-  position: absolute;
+  position: fixed;
   top: 33px;
   width: 32px;
   height: 40px;
   text-indent: -9999em;
-  z-index: 99;
+  z-index: 10002;
   right: 40px;
   display: none;
 }
@@ -513,6 +524,24 @@ header
 
 .header-area.header-sticky {
   min-height: 80px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+}
+
+.header-area.scrolled {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+}
+
+.header-area.header-sticky.scrolled {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
 }
 
 .header-area .nav {
@@ -560,6 +589,8 @@ header
   }
   .header-area .menu-trigger {
     display: block !important;
+    position: fixed !important;
+    z-index: 10002 !important;
   }
   .header-area .main-nav {
     overflow: hidden;
@@ -967,7 +998,7 @@ menu
 
 #menu .price h6 {
   position: absolute;
-  width: 70px;
+  width: 100px;
   height: 70px;
   background-color: #fb5849;
   font-size: 20px;
@@ -1049,6 +1080,32 @@ menu
   font-size: 25px;
   font-weight: 700;
   content: '\f105';
+}
+
+#menu .menu-view-button {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+#menu .menu-view-button .main-button {
+  display: inline-block;
+  background-color: #fb5849;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  line-height: 44px;
+  padding: 0px 30px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#menu .menu-view-button .main-button:hover {
+  background-color: #e74c3c;
+  color: #fff;
+  text-decoration: none;
 }
 
 
@@ -1446,7 +1503,7 @@ offers
   position: absolute;
   top: 15px;
   right: 0;
-  width: 70px;
+  width: 100px;
   height: 70px;
   background-color: #fb5849;
   display: inline-block;
@@ -1666,3 +1723,160 @@ responsive
     opacity: 0;
   }
 }
+
+/* Language Switcher Styles */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+  position: relative;
+}
+
+/* Position language switcher within container's right margin area */
+.header-area .container {
+  position: relative;
+}
+
+.header-area .container .nav-right {
+  position: absolute;
+  right: -240px; /* Back to original position */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: #000;
+  padding: 8px 15px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-btn:hover {
+  background: #000;
+  color: white;
+}
+
+.lang-btn i {
+  font-size: 30px;
+}
+
+/* Small screens - reposition header language switcher */
+@media (max-width: 1443px) {
+  /* Position the header language switcher to fixed location */
+  .header-area .container .nav-right {
+    position: fixed !important;
+    top: 130px !important;
+    left: 20px !important;
+    right: auto !important;
+    transform: none !important;
+    z-index: 10000 !important;
+  }
+  
+  /* Style the language switcher for visibility */
+  .header-area .container .nav-right .language-switcher {
+    background: rgba(255,255,255,0.9) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+  }
+  
+  .header-area .container .nav-right .lang-btn {
+    background: white !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+  }
+  
+  .header-area .container .nav-right .lang-btn:hover {
+    background: #333 !important;
+    color: white !important;
+  }
+  
+  /* Make sure hamburger menu stays visible and positioned correctly */
+  .header-area .container .nav-right .menu-trigger {
+    display: block !important;
+    position: fixed !important;
+    top: 18px !important;
+    right: 40px !important;
+    z-index: 10001 !important;
+  }
+}
+
+/* Medium desktop screens - move language switcher 50px left */
+@media (min-width: 1444px) and (max-width: 1665px) {
+  .header-area .container .nav-right {
+    right: -150px; /* 50px left from original -240px */
+  }
+}
+
+/* Desktop only - override mobile white colors */
+@media (min-width: 1666px) {
+  .lang-btn {
+    border: none !important;
+    color: #000 !important;
+  }
+  
+  .lang-btn:hover {
+    background: #000 !important;
+    color: white !important;
+  }
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 120px;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.lang-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.lang-option:last-child {
+  border-bottom: none;
+}
+
+.lang-option:hover {
+  background-color: #fb5849;
+  color: white;
+}
+
+
+
+

@@ -7,10 +7,18 @@
 	  var box = $('.header-text').height();
 	  var header = $('header').height();
 
-	  if (scroll >= box - header) {
+	  // Always keep header visible - simplified logic
+	  if (scroll > 100) {
 	    $("header").addClass("background-header");
 	  } else {
 	    $("header").removeClass("background-header");
+	  }
+	  
+	  // Hide language switcher after minimal scroll (50px)
+	  if (scroll > 50) {
+	    $("header").addClass("scrolled");
+	  } else {
+	    $("header").removeClass("scrolled");
 	  }
 	});
 	

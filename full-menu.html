@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Menu - Asian Food</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/templatemo-klassy-cafe.css">
+    
+    <!-- Additional CSS for full menu page -->
+    <style>
+        .menu-section {
+            padding: 80px 0;
+            margin-top: 50px;
+        }
+        
+        .menu-category {
+            margin-bottom: 60px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .menu-item-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1e1e1e;
+        }
+        
+        .menu-item-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .menu-item-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #f7be38;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .category-title h2 {
+            color: #1e1e1e;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .category-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .tabbed-menu {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            background: white;
+            border: 2px solid #f7be38;
+            color: #1e1e1e;
+            padding: 15px 30px;
+            margin: 0 10px 10px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .tab-button.active,
+        .tab-button:hover {
+            background: #f7be38;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tab-menu-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .tab-menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        
+        .tab-menu-item h4 {
+            color: #1e1e1e;
+            margin-bottom: 10px;
+        }
+        
+        .tab-menu-item p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .tab-menu-item .price {
+            color: #f7be38;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Override language switcher colors for full-menu page */
+        @media (max-width: 1665px) {
+            .lang-btn {
+                border-color: #fb5849 !important;
+                color: #fb5849 !important;
+            }
+            
+            .lang-btn:hover {
+                background: #fb5849 !important;
+                color: white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <img src="assets/images/klassy-logo.png" alt="Asian Food">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="index.html#top">Home</a></li>
+                            <li class="scroll-to-section"><a href="index.html#about">About</a></li>
+                            <li class="scroll-to-section"><a href="index.html#menu" class="active">Menu</a></li>
+                            <li class="scroll-to-section"><a href="index.html#chefs">Chefs</a></li> 
+                            <li class="submenu">
+                                <a href="javascript:;">Features</a>
+                                <ul>
+                                    <li><a href="#">Features Page 1</a></li>
+                                    <li><a href="#">Features Page 2</a></li>
+                                    <li><a href="#">Features Page 3</a></li>
+                                    <li><a href="#">Features Page 4</a></li>
+                                </ul>
+                            </li>
+                            <li class="scroll-to-section"><a href="index.html#reservation">Contact Us</a></li> 
+                        </ul>        
+                        <div class="nav-right">
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Language Switcher Start ***** -->
+                            <div class="language-switcher">
+                                <button class="lang-btn" onclick="toggleLanguage()">
+                                    <span id="current-lang">EN</span>
+                                    <i class="fa fa-globe"></i>
+                                </button>
+                                <div class="lang-dropdown" id="lang-dropdown">
+                                    <a href="#" onclick="changeLanguage('en')" class="lang-option">English</a>
+                                    <a href="#" onclick="changeLanguage('hy')" class="lang-option">Հայ</a>
+                                </div>
+                            </div>
+                            <!-- ***** Language Switcher End ***** -->
+                        </div>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- Desserts & Cakes Section -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="category-title">
+                <h2>Desserts & Cakes</h2>
+                <p>Our selection of cakes with quality taste</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-01.jpg" alt="Chocolate Cake" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Chocolate Cake</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">7000 ֏</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-02.jpg" alt="Klassy Pancake" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Klassy Pancake</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">11000 ֏</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-03.jpg" alt="Tall Klassy Bread" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Tall Klassy Bread</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">9000 ֏</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-04.jpg" alt="Blueberry CheeseCake" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Blueberry CheeseCake</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">5000 ֏</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-05.jpg" alt="Klassy Cup Cake" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Klassy Cup Cake</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">4250 ֏</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item-card">
+                    <img src="assets/images/menu-item-01.jpg" alt="Klassic Cake" class="menu-item-image">
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Klassic Cake</h3>
+                        <p class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
+                        <div class="menu-item-price">3625 ֏</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabbed Menu Section -->
+    <section class="tabbed-menu">
+        <div class="container">
+            <div class="category-title">
+                <h2>This Week's Special Meal Offers</h2>
+                <p>Explore our daily specials for breakfast, lunch, and dinner</p>
+            </div>
+            
+            <div class="tab-navigation">
+                <button class="tab-button active" onclick="showTab('breakfast')">Breakfast</button>
+                <button class="tab-button" onclick="showTab('lunch')">Lunch</button>
+                <button class="tab-button" onclick="showTab('dinner')">Dinner</button>
+            </div>
+            
+            <!-- Breakfast Tab -->
+            <div id="breakfast" class="tab-content active">
+                <div class="tab-menu-grid">
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-01.png" alt="Fresh Chicken Salad">
+                        <h4>Fresh Chicken Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">5250 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-02.png" alt="Orange Juice">
+                        <h4>Orange Juice</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">4250 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-03.png" alt="Fruit Salad">
+                        <h4>Fruit Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">4950 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-04.png" alt="Eggs Omelette">
+                        <h4>Eggs Omelette</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">3250 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-05.png" alt="Dollma Pire">
+                        <h4>Dollma Pire</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">2500 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-06.png" alt="Omelette & Cheese">
+                        <h4>Omelette & Cheese</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">2050 ֏</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lunch Tab -->
+            <div id="lunch" class="tab-content">
+                <div class="tab-menu-grid">
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-04.png" alt="Eggs Omelette">
+                        <h4>Eggs Omelette</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">7000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-05.png" alt="Dollma Pire">
+                        <h4>Dollma Pire</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">9000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-06.png" alt="Omelette & Cheese">
+                        <h4>Omelette & Cheese</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">11000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-01.png" alt="Fresh Chicken Salad">
+                        <h4>Fresh Chicken Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">5000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-02.png" alt="Orange Juice">
+                        <h4>Orange Juice</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">10000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-03.png" alt="Fruit Salad">
+                        <h4>Fruit Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">15000 ֏</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dinner Tab -->
+            <div id="dinner" class="tab-content">
+                <div class="tab-menu-grid">
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-05.png" alt="Eggs Omelette">
+                        <h4>Eggs Omelette</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">7000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-03.png" alt="Orange Juice">
+                        <h4>Orange Juice</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">9000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-02.png" alt="Fruit Salad">
+                        <h4>Fruit Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">5000 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-06.png" alt="Fresh Chicken Salad">
+                        <h4>Fresh Chicken Salad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">4250 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-01.png" alt="Dollma Pire">
+                        <h4>Dollma Pire</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">4500 ֏</div>
+                    </div>
+                    
+                    <div class="tab-menu-item">
+                        <img src="assets/images/tab-item-04.png" alt="Omelette & Cheese">
+                        <h4>Omelette & Cheese</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
+                        <div class="price">5500 ֏</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-xs-12">
+                    <div class="right-text-content">
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/images/white-logo.png" alt="Asian Food"></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <div class="left-text-content">
+                        <p>© Copyright Asian Food Co. - Created by Ashot Grigoryan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Language Switcher Functionality
+        function toggleLanguage() {
+            const dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function changeLanguage(lang) {
+            const currentLang = document.getElementById('current-lang');
+            
+            if (lang === 'en') {
+                currentLang.textContent = 'EN';
+                // Here you would typically load English translations
+                console.log('Switched to English');
+            } else if (lang === 'hy') {
+                currentLang.textContent = 'Հայ';
+                // Here you would typically load Armenian translations
+                console.log('Switched to Armenian');
+            }
+            
+            // Close dropdown
+            document.getElementById('lang-dropdown').classList.remove('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const dropdown = document.getElementById('lang-dropdown');
+            
+            if (!languageSwitcher.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

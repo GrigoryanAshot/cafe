@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asian Food - Admin Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .login-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+
+        .input-with-icon {
+            padding-left: 45px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .forgot-password a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .back-to-website {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .back-to-website a {
+            color: #7f8c8d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .back-to-website a:hover {
+            color: #2c3e50;
+        }
+
+        .back-to-website i {
+            margin-right: 5px;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: none;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+                            <h1>Asian Food</h1>
+            <p>Admin Panel Login</p>
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            Invalid username or password. Please try again.
+        </div>
+
+        <div class="success-message" id="successMessage">
+            Login successful! Redirecting to admin panel...
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" class="form-input input-with-icon" id="username" placeholder="Enter your username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="form-input input-with-icon" id="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn" id="loginBtn">
+                <span id="loginText">Login to Admin Panel</span>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                </div>
+            </button>
+        </form>
+
+        <div class="forgot-password">
+            <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+        </div>
+
+        <div class="back-to-website">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                Back to Website
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Default credentials (you can change these)
+        const DEFAULT_USERNAME = 'admin';
+        const DEFAULT_PASSWORD = 'asianfood123';
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Show loading
+            document.getElementById('loginText').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loginBtn').disabled = true;
+            
+            // Hide any existing messages
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            
+            // Simulate login process
+            setTimeout(() => {
+                if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+                    // Successful login
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Store login state
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminUsername', username);
+                    
+                    // Redirect to admin panel after 1 second
+                    setTimeout(() => {
+                        window.location.href = 'admin.html';
+                    }, 1000);
+                } else {
+                    // Failed login
+                    document.getElementById('errorMessage').style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+                
+                // Hide loading
+                document.getElementById('loginText').style.display = 'block';
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('loginBtn').disabled = false;
+            }, 1000);
+        });
+
+        function showForgotPassword() {
+            alert('Default credentials:\nUsername: admin\nPassword: klassy123\n\nYou can change these credentials in the login.html file.');
+        }
+
+        // Check if already logged in
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                // Already logged in, redirect to admin panel
+                window.location.href = 'admin.html';
+            }
+        });
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Focus on username field
+            document.getElementById('username').focus();
+            
+            // Add enter key support
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

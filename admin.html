@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asian Food - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #34495e;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h2 {
+            color: #ecf0f1;
+            font-size: 1.5rem;
+        }
+
+        .sidebar-header p {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-icon.blue { background: #3498db; }
+        .card-icon.green { background: #2ecc71; }
+        .card-icon.orange { background: #e67e22; }
+        .card-icon.red { background: #e74c3c; }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section-header h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .section-header p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-success {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #27ae60;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+
+        /* Tables */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Tabs */
+        .tab-container {
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Asian Food</h2>
+                <p>Admin Panel</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link active" onclick="showTab('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link" onclick="showTab('menu')">
+                        <i class="fas fa-utensils"></i>
+                        Menu Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#orders" class="nav-link" onclick="showTab('orders')">
+                        <i class="fas fa-shopping-cart"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#special-meal" class="nav-link" onclick="showTab('special-meal')">
+                        <i class="fas fa-star"></i>
+                        Special Meal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#reservations" class="nav-link" onclick="showTab('reservations')">
+                        <i class="fas fa-calendar-alt"></i>
+                        Reservations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#content" class="nav-link" onclick="showTab('content')">
+                        <i class="fas fa-address-book"></i>
+                        Contact Info
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings" class="nav-link" onclick="showTab('settings')">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Website
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome to Asian Food Admin Panel. Manage your website content and monitor your business.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Menu Items</div>
+                                <div class="card-value">12</div>
+                                <div class="card-subtitle">Active items</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Reservations</div>
+                                <div class="card-value">8</div>
+                                <div class="card-subtitle">Today's bookings</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Customers</div>
+                                <div class="card-value">156</div>
+                                <div class="card-subtitle">This month</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon red">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Revenue</div>
+                                <div class="card-value">1,225,000 ֏</div>
+                                <div class="card-subtitle">This week</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Recent Activity</h3>
+                        <p>Latest updates and activities</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Activity</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>New reservation received</td>
+                                        <td>2 hours ago</td>
+                                        <td><span style="color: #2ecc71;">✓ Confirmed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Menu item updated</td>
+                                        <td>4 hours ago</td>
+                                        <td><span style="color: #3498db;">✓ Updated</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website content modified</td>
+                                        <td>1 day ago</td>
+                                        <td><span style="color: #3498db;">✓ Published</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Management Tab -->
+            <div id="menu" class="tab-content">
+                <div class="header">
+                    <h1>Menu Management</h1>
+                    <p>Add, edit, and manage your menu items</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Add New Menu Item</h3>
+                        <p>Create a new menu item for your cafe</p>
+                        <button class="btn btn-primary" onclick="toggleAddForm()" id="toggleAddBtn">
+                            <i class="fas fa-plus"></i> Add New Item
+                        </button>
+                    </div>
+                    <div class="section-content" id="addMenuForm" style="display: none;">
+                        <form id="menuForm">
+                            <div class="form-group">
+                                <label class="form-label">Item Name</label>
+                                <input type="text" class="form-input" placeholder="Enter item name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-input form-textarea" placeholder="Enter item description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-input" placeholder="Enter price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-input" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Dinner">Dinner</option>
+                                    <option value="Desserts">Desserts</option>
+                                    <option value="Beverages">Beverages</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Item Photo</label>
+                                <div class="file-upload-container">
+                                    <input type="file" class="form-input" id="itemPhoto" accept="image/*" style="padding: 8px;">
+                                    <div class="file-preview" id="filePreview" style="margin-top: 10px; display: none;">
+                                        <img id="previewImage" style="max-width: 200px; max-height: 150px; border-radius: 8px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Add Menu Item</button>
+                                <button type="button" class="btn btn-danger" onclick="toggleAddForm()" style="margin-left: 10px;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Current Menu Items</h3>
+                        <p>Manage existing menu items</p>
+                    </div>
+                    <div class="section-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chocolate Cake</td>
+                                    <td>Desserts</td>
+                                    <td>7000 ֏</td>
+                                    <td><span style="color: #2ecc71;">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Klassy Pancake</td>
+                                    <td>Breakfast</td>
+                                    <td>11000 ֏</td>
+                                    <td><span style="color: #2ecc71;">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tall Klassy Bread</td>
+                                    <td>Breakfast</td>
+                                    <td>9000 ֏</td>
+                                    <td><span style="color: #2ecc71;">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="orders" class="tab-content">
+                <div class="header">
+                    <h1>Orders</h1>
+                    <p>Manage customer orders and deliveries</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Today's Orders</h3>
+                        <p>View and manage today's food orders</p>
+                    </div>
+                    <div class="section-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Order Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-001</td>
+                                    <td>Mike Wilson</td>
+                                    <td>Chocolate Cake, Coffee</td>
+                                    <td>9250 ֏</td>
+                                    <td>2:30 PM</td>
+                                    <td><span style="color: #f39c12;">Preparing</span></td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 6px 12px; font-size: 0.8rem;">Ready</button>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-002</td>
+                                    <td>Lisa Brown</td>
+                                    <td>Klassy Pancake, Orange Juice</td>
+                                    <td>13000 ֏</td>
+                                    <td>1:45 PM</td>
+                                    <td><span style="color: #2ecc71;">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">View</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-003</td>
+                                    <td>David Lee</td>
+                                    <td>Tall Klassy Bread, Tea</td>
+                                    <td>11000 ֏</td>
+                                    <td>3:15 PM</td>
+                                    <td><span style="color: #e74c3c;">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 6px 12px; font-size: 0.8rem;">Accept</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Order Statistics</h3>
+                        <p>Today's order summary</p>
+                    </div>
+                    <div class="section-content">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-icon orange">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <div class="card-title">Pending</div>
+                                        <div class="card-value">3</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-icon blue">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <div>
+                                        <div class="card-title">Preparing</div>
+                                        <div class="card-value">2</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-icon green">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div>
+                                        <div class="card-title">Completed</div>
+                                        <div class="card-value">8</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-icon red">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <div>
+                                        <div class="card-title">Revenue</div>
+                                        <div class="card-value">78000 ֏</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Meal Tab -->
+            <div id="special-meal" class="tab-content">
+                <div class="header">
+                    <h1>Special Meal Management</h1>
+                    <p>Add, edit, and manage your special meal items</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Add New Special Meal</h3>
+                        <p>Create a new special meal item for your cafe</p>
+                        <button class="btn btn-primary" onclick="toggleSpecialMealForm()" id="toggleSpecialMealBtn">
+                            <i class="fas fa-plus"></i> Add New Special Meal
+                        </button>
+                    </div>
+                    <div class="section-content" id="addSpecialMealForm" style="display: none;">
+                        <form id="specialMealForm">
+                            <div class="form-group">
+                                <label class="form-label">Special Meal Name</label>
+                                <input type="text" class="form-input" placeholder="Enter special meal name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-input form-textarea" placeholder="Enter special meal description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-input" placeholder="Enter price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-input" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Chef's Special">Chef's Special</option>
+                                    <option value="Seasonal">Seasonal</option>
+                                    <option value="Limited Edition">Limited Edition</option>
+                                    <option value="Holiday Special">Holiday Special</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Special Meal Photo</label>
+                                <div class="file-upload-container">
+                                    <input type="file" class="form-input" id="specialMealPhoto" accept="image/*" style="padding: 8px;">
+                                    <div class="file-preview" id="specialMealFilePreview" style="margin-top: 10px; display: none;">
+                                        <img id="specialMealPreviewImage" style="max-width: 200px; max-height: 150px; border-radius: 8px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Available Until</label>
+                                <input type="date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Add Special Meal</button>
+                                <button type="button" class="btn btn-danger" onclick="toggleSpecialMealForm()" style="margin-left: 10px;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Current Special Meals</h3>
+                        <p>Manage existing special meal items</p>
+                    </div>
+                    <div class="section-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Special Meal Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Available Until</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chef's Signature Steak</td>
+                                    <td>Chef's Special</td>
+                                    <td>22500 ֏</td>
+                                    <td>Dec 31, 2024</td>
+                                    <td><span style="color: #2ecc71;">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Winter Truffle Pasta</td>
+                                    <td>Seasonal</td>
+                                    <td>16000 ֏</td>
+                                    <td>Mar 15, 2024</td>
+                                    <td><span style="color: #2ecc71;">Active</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Valentine's Chocolate Cake</td>
+                                    <td>Holiday Special</td>
+                                    <td>14000 ֏</td>
+                                    <td>Feb 14, 2024</td>
+                                    <td><span style="color: #e74c3c;">Expired</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservations Tab -->
+            <div id="reservations" class="tab-content">
+                <div class="header">
+                    <h1>Reservations</h1>
+                    <p>Manage customer reservations and bookings</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Today's Reservations</h3>
+                        <p>View and manage today's bookings</p>
+                    </div>
+                    <div class="section-content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Date & Time</th>
+                                    <th>Guests</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Smith</td>
+                                    <td>Today, 7:00 PM</td>
+                                    <td>4</td>
+                                    <td>+1 234-567-8900</td>
+                                    <td><span style="color: #2ecc71;">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Cancel</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Johnson</td>
+                                    <td>Today, 8:30 PM</td>
+                                    <td>2</td>
+                                    <td>+1 234-567-8901</td>
+                                    <td><span style="color: #f39c12;">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.8rem;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem;">Cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info Tab -->
+            <div id="content" class="tab-content">
+                <div class="header">
+                    <h1>Contact Info</h1>
+                    <p>Manage contact information and business details</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Business Information</h3>
+                        <p>Update your cafe's contact details and information</p>
+                    </div>
+                    <div class="section-content">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label">Cafe Name</label>
+                                <input type="text" class="form-input" value="KlassyCafe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tagline</label>
+                                <input type="text" class="form-input" value="THE BEST EXPERIENCE">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">About Us Description</label>
+                                <textarea class="form-input form-textarea">Asian Food is a beautiful restaurant website created by Ashot Grigoryan. This website showcases the finest dining experience with a modern and elegant design. Our restaurant offers the best quality food and exceptional service to create memorable dining experiences for our valued customers.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Contact Information</label>
+                                <input type="text" class="form-input" value="080-090-0990" placeholder="Phone Number">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" value="hello@company.com" placeholder="Email">
+                            </div>
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <div class="header">
+                    <h1>Settings</h1>
+                    <p>Configure your admin panel and website settings</p>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Admin Settings</h3>
+                        <p>Manage your admin panel preferences</p>
+                    </div>
+                    <div class="section-content">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label">Admin Email</label>
+                                <input type="email" class="form-input" value="admin@klassycafe.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Notification Settings</label>
+                                <div style="margin-top: 10px;">
+                                    <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <input type="checkbox" checked style="margin-right: 10px;">
+                                        Email notifications for new reservations
+                                    </label>
+                                    <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <input type="checkbox" checked style="margin-right: 10px;">
+                                        SMS notifications for urgent bookings
+                                    </label>
+                                    <label style="display: flex; align-items: center;">
+                                        <input type="checkbox" style="margin-right: 10px;">
+                                        Weekly summary reports
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">Save Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication check
+        function checkAuth() {
+            if (localStorage.getItem('adminLoggedIn') !== 'true') {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('adminUsername');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Check authentication on page load
+        window.addEventListener('load', checkAuth);
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+        }
+
+        // Toggle add menu form
+        function toggleAddForm() {
+            const form = document.getElementById('addMenuForm');
+            const btn = document.getElementById('toggleAddBtn');
+            
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-minus"></i> Hide Form';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-warning');
+            } else {
+                form.style.display = 'none';
+                btn.innerHTML = '<i class="fas fa-plus"></i> Add New Item';
+                btn.classList.remove('btn-warning');
+                btn.classList.add('btn-primary');
+                // Reset form when hiding
+                document.getElementById('menuForm').reset();
+                document.getElementById('filePreview').style.display = 'none';
+            }
+        }
+
+        // Toggle add special meal form
+        function toggleSpecialMealForm() {
+            const form = document.getElementById('addSpecialMealForm');
+            const btn = document.getElementById('toggleSpecialMealBtn');
+            
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-minus"></i> Hide Form';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-warning');
+            } else {
+                form.style.display = 'none';
+                btn.innerHTML = '<i class="fas fa-plus"></i> Add New Special Meal';
+                btn.classList.remove('btn-warning');
+                btn.classList.add('btn-primary');
+                // Reset form when hiding
+                document.getElementById('specialMealForm').reset();
+                document.getElementById('specialMealFilePreview').style.display = 'none';
+            }
+        }
+
+        // Photo preview functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoInput = document.getElementById('itemPhoto');
+            const preview = document.getElementById('filePreview');
+            const previewImage = document.getElementById('previewImage');
+            
+            if (photoInput) {
+                photoInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewImage.src = e.target.result;
+                            preview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.style.display = 'none';
+                    }
+                });
+            }
+
+            // Special meal photo preview functionality
+            const specialMealPhotoInput = document.getElementById('specialMealPhoto');
+            const specialMealPreview = document.getElementById('specialMealFilePreview');
+            const specialMealPreviewImage = document.getElementById('specialMealPreviewImage');
+            
+            if (specialMealPhotoInput) {
+                specialMealPhotoInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            specialMealPreviewImage.src = e.target.result;
+                            specialMealPreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        specialMealPreview.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Form submission handling
+        document.getElementById('menuForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Menu item added successfully!');
+            this.reset();
+            document.getElementById('filePreview').style.display = 'none';
+            toggleAddForm(); // Hide the form after submission
+        });
+
+        // Special meal form submission handling
+        document.getElementById('specialMealForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Special meal added successfully!');
+            this.reset();
+            document.getElementById('specialMealFilePreview').style.display = 'none';
+            toggleSpecialMealForm(); // Hide the form after submission
+        });
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.textContent === 'Delete') {
+                        if (confirm('Are you sure you want to delete this item?')) {
+                            alert('Item deleted successfully!');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

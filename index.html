@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>Klassy Cafe - Restaurant Website</title>
+    <title>Asian Food - Restaurant Website</title>
 <!--
     
 Created by Ashot Grigoryan
@@ -50,7 +50,7 @@ Created by Ashot Grigoryan
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/klassy-logo.png" alt="Klassy Cafe">
+                            <img src="assets/images/klassy-logo.png" alt="Asian Food">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -68,7 +68,7 @@ Created by Ashot Grigoryan
                                 </ul>
                             </li>
                         -->
-                            <li class="scroll-to-section"><a href="#menu">Menu</a></li>
+                            <li class="scroll-to-section"><a href="full-menu.html">Menu</a></li>
                             <li class="scroll-to-section"><a href="#chefs">Chefs</a></li> 
                             <li class="submenu">
                                 <a href="javascript:;">Features</a>
@@ -82,9 +82,23 @@ Created by Ashot Grigoryan
 
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li> 
                         </ul>        
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
+                        <div class="nav-right">
+                            <a class='menu-trigger'>
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Language Switcher Start ***** -->
+                            <div class="language-switcher">
+                                <button class="lang-btn" onclick="toggleLanguage()">
+                                    <span id="current-lang">EN</span>
+                                    <i class="fa fa-globe"></i>
+                                </button>
+                                <div class="lang-dropdown" id="lang-dropdown">
+                                    <a href="#" onclick="changeLanguage('en')" class="lang-option">English</a>
+                                    <a href="#" onclick="changeLanguage('hy')" class="lang-option">Հայ</a>
+                                </div>
+                            </div>
+                            <!-- ***** Language Switcher End ***** -->
+                        </div>
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
@@ -100,10 +114,13 @@ Created by Ashot Grigoryan
                 <div class="col-lg-4">
                     <div class="left-content">
                         <div class="inner-content">
-                            <h4>KlassyCafe</h4>
+                            <h4>Asian Food</h4>
                             <h6>THE BEST EXPERIENCE</h6>
-                            <div class="main-white-button scroll-to-section">
+                            <div class="main-white-button scroll-to-section" style="width: 250px; margin: 0 auto; text-align: center;">
                                 <a href="#reservation">Make A Reservation</a>
+                            </div>
+                            <div class="main-white-button scroll-to-section" style="width: 250px; margin: 15px auto 0 auto; text-align: center;">
+                                <a href="#menu">Place An Order</a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +167,7 @@ Created by Ashot Grigoryan
                             <h6>About Us</h6>
                             <h2>We Leave A Delicious Memory For You</h2>
                         </div>
-                        <p>Klassy Cafe is a beautiful restaurant website created by Ashot Grigoryan. This website showcases the finest dining experience with a modern and elegant design. Our restaurant offers the best quality food and exceptional service to create memorable dining experiences for our valued customers.</p>
+                        <p>Asian Food is a beautiful restaurant website created by Ashot Grigoryan. This website showcases the finest dining experience with a modern and elegant design. Our restaurant offers the best quality food and exceptional service to create memorable dining experiences for our valued customers.</p>
                         <div class="row">
                             <div class="col-4">
                                 <img src="assets/images/about-thumb-01.jpg" alt="">
@@ -194,7 +211,7 @@ Created by Ashot Grigoryan
                 <div class="owl-menu-item owl-carousel">
                     <div class="item">
                         <div class='card card1'>
-                            <div class="price"><h6>$14</h6></div>
+                            <div class="price"><h6>7000 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Chocolate Cake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -206,7 +223,7 @@ Created by Ashot Grigoryan
                     </div>
                     <div class="item">
                         <div class='card card2'>
-                            <div class="price"><h6>$22</h6></div>
+                            <div class="price"><h6>11000 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Klassy Pancake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -218,7 +235,7 @@ Created by Ashot Grigoryan
                     </div>
                     <div class="item">
                         <div class='card card3'>
-                            <div class="price"><h6>$18</h6></div>
+                            <div class="price"><h6>9000 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Tall Klassy Bread</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -230,7 +247,7 @@ Created by Ashot Grigoryan
                     </div>
                     <div class="item">
                         <div class='card card4'>
-                            <div class="price"><h6>$10</h6></div>
+                            <div class="price"><h6>5000 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Blueberry CheeseCake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -242,7 +259,7 @@ Created by Ashot Grigoryan
                     </div>
                     <div class="item">
                         <div class='card card5'>
-                            <div class="price"><h6>$8.50</h6></div>
+                            <div class="price"><h6>4250 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Klassy Cup Cake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -254,7 +271,7 @@ Created by Ashot Grigoryan
                     </div>
                     <div class="item">
                         <div class='card card3'>
-                            <div class="price"><h6>$7.25</h6></div>
+                            <div class="price"><h6>3625 ֏</h6></div>
                             <div class='info'>
                               <h1 class='title'>Klassic Cake</h1>
                               <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do eiusmod teme.</p>
@@ -264,6 +281,13 @@ Created by Ashot Grigoryan
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="menu-view-button">
+                    <a href="full-menu.html" class="main-button">See Full Menu</a>
                 </div>
             </div>
         </div>
@@ -435,7 +459,12 @@ Created by Ashot Grigoryan
                             </div>
                             <div class="col-lg-12">
                               <fieldset>
-                                <button type="submit" id="form-submit" class="main-button-icon">Make A Reservation</button>
+                                <button type="submit" id="form-submit" class="main-button-icon" style="width: 250px; margin: 0 auto; display: block; text-align: center;">Make A Reservation</button>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="button" id="order-button" class="main-button-icon" style="width: 250px; margin: 15px auto 0 auto; display: block; background-color: #f7be33; text-align: center;">Place An Order</button>
                               </fieldset>
                             </div>
                           </div>
@@ -487,7 +516,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fresh Chicken Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$10.50</h6>
+                                                                <h6>5250 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -497,7 +526,7 @@ Created by Ashot Grigoryan
                                                             <h4>Orange Juice</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$8.50</h6>
+                                                                <h6>4250 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -507,7 +536,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fruit Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$9.90</h6>
+                                                                <h6>4950 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -523,7 +552,7 @@ Created by Ashot Grigoryan
                                                             <h4>Eggs Omelette</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$6.50</h6>
+                                                                <h6>3250 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -533,7 +562,7 @@ Created by Ashot Grigoryan
                                                             <h4>Dollma Pire</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$5.00</h6>
+                                                                <h6>2500 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -543,7 +572,7 @@ Created by Ashot Grigoryan
                                                             <h4>Omelette & Cheese</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$4.10</h6>
+                                                                <h6>2050 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -563,7 +592,7 @@ Created by Ashot Grigoryan
                                                             <h4>Eggs Omelette</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$14</h6>
+                                                                <h6>7000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -573,7 +602,7 @@ Created by Ashot Grigoryan
                                                             <h4>Dollma Pire</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$18</h6>
+                                                                <h6>9000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -583,7 +612,7 @@ Created by Ashot Grigoryan
                                                             <h4>Omelette & Cheese</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$22</h6>
+                                                                <h6>11000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -599,7 +628,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fresh Chicken Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$10</h6>
+                                                                <h6>5000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -609,7 +638,7 @@ Created by Ashot Grigoryan
                                                             <h4>Orange Juice</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$20</h6>
+                                                                <h6>10000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -619,7 +648,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fruit Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$30</h6>
+                                                                <h6>15000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -639,7 +668,7 @@ Created by Ashot Grigoryan
                                                             <h4>Eggs Omelette</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$14</h6>
+                                                                <h6>7000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -649,7 +678,7 @@ Created by Ashot Grigoryan
                                                             <h4>Orange Juice</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$18</h6>
+                                                                <h6>9000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -659,7 +688,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fruit Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$10</h6>
+                                                                <h6>5000 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -675,7 +704,7 @@ Created by Ashot Grigoryan
                                                             <h4>Fresh Chicken Salad</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$8.50</h6>
+                                                                <h6>4250 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -685,7 +714,7 @@ Created by Ashot Grigoryan
                                                             <h4>Dollma Pire</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$9</h6>
+                                                                <h6>4500 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -695,7 +724,7 @@ Created by Ashot Grigoryan
                                                             <h4>Omelette & Cheese</h4>
                                                             <p>Lorem ipsum dolor sit amet, consectetur koit adipiscing elit, sed do.</p>
                                                             <div class="price">
-                                                                <h6>$11</h6>
+                                                                <h6>5500 ֏</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -734,7 +763,7 @@ Created by Ashot Grigoryan
                 </div>
                 <div class="col-lg-4 col-xs-12">
                     <div class="left-text-content">
-                        <p>© Copyright Klassy Cafe Co.
+                        <p>© Copyright Asian Food Co.
                         
                         <br>Created by Ashot Grigoryan</p>
                     </div>
@@ -778,6 +807,39 @@ Created by Ashot Grigoryan
             }, 500);
                 
             });
+        });
+
+        // Language Switcher Functionality
+        function toggleLanguage() {
+            const dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function changeLanguage(lang) {
+            const currentLang = document.getElementById('current-lang');
+            
+            if (lang === 'en') {
+                currentLang.textContent = 'EN';
+                // Here you would typically load English translations
+                console.log('Switched to English');
+            } else if (lang === 'hy') {
+                currentLang.textContent = 'Հայ';
+                // Here you would typically load Armenian translations
+                console.log('Switched to Armenian');
+            }
+            
+                    // Close dropdown
+        document.getElementById('lang-dropdown').classList.remove('show');
+    }
+
+    // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const dropdown = document.getElementById('lang-dropdown');
+            
+            if (!languageSwitcher.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
         });
 
     </script>
